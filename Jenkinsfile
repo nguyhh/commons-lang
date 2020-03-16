@@ -20,7 +20,7 @@ pipeline{
         }
         failure {
             sh "git bisect start ${BROKEN} ${STABLE}"
-		    sh "git bisect run mvn clean test"
+		    sh "git bisect run mvn clean test -Drat.numUnapprovedLicenses=10"
 		    sh "git bisect log>bisect.log"
 		    sh "git bisect reset" 
 
